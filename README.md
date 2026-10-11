@@ -1,7 +1,7 @@
 # BurnStop 🌾
 ### Turning fire intelligence into timely agricultural intervention
 
-**AIR Track · Stubble Burning · Punjab & Haryana, India**
+**Stubble Burning · Punjab & Haryana, India**
 
 BurnStop is an AWS-powered prototype designed to help reduce stubble burning by connecting satellite-derived fire intelligence with coordinated agricultural intervention.
 
