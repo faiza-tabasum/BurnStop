@@ -60,7 +60,7 @@ export async function handler(event) {
         try { await flow.markDone(ns, id); await tgAnswer(cb.id, 'Marked done. Thank you.'); }
         catch (e) { await tgAnswer(cb.id, e.message).catch(() => {}); }
       } else if (body.message?.text === '/start') {
-        await tgText(`BurnStop bot is connected. Your chat id is ${body.message.chat.id}.`).catch(() => {});
+        await tgText(`BurnStop bot is connected. Your chat id is ${body.message.chat.id}.`, {}, body.message.chat.id).catch(() => {});
       }
       return json(200, { ok: true });
     }

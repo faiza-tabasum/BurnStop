@@ -57,7 +57,9 @@ async function tgAudio(buf, caption) {
   if (!j.ok) throw new Error(j.description || 'telegram audio error');
 }
 
-export const tgText = (text, extra = {}) => tg('sendMessage', { chat_id: process.env.TELEGRAM_CHAT_ID, text, ...extra });
+// Farmer + officer messages go to TELEGRAM_CHAT_ID. Operator messages go to TELEGRAM_OPERATOR_CHAT_ID (falls back to the same chat).
+const operatorChat = () => process.env.TELEGRAM_OPERATOR_CHAT_ID || process.env.TELEGRAM_CHAT_ID;
+export const tgText = (text, extra = {}, chat = process.env.TELEGRAM_CHAT_ID) => tg('sendMessage', { chat_id: chat, text, ...extra });
 export const tgAnswer = (id, text) => tg('answerCallbackQuery', { callback_query_id: id, text });
 
 const tag = () => '';
@@ -94,14 +96,14 @@ export async function sendOperator(plan, ctx) {
         { text: '✅ Accept', callback_data: `acc:${ctx.ns}:${plan.id}` },
         { text: "❌ Can't do it", callback_data: `dec:${ctx.ns}:${plan.id}` },
       ]] },
-    });
+    }, operatorChat());
     return [{ to: 'operator', what: 'job offer', ok: true }];
   } catch (e) { return [{ to: 'operator', what: 'job offer', ok: false, note: e.message }]; }
 }
 
 export const sendDoneButton = (ns, id) => tgText('Tap Done when the service is finished.', {
   reply_markup: { inline_keyboard: [[{ text: '✅ Done', callback_data: `done:${ns}:${id}` }]] },
-});
+}, operatorChat());
 
 export async function sendOfficer(text, ctx) {
   if (!tgConfigured()) return { ok: false, note: 'Telegram not configured' };
