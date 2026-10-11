@@ -1,0 +1,1175 @@
+[
+ {
+  "id": "CHC-01",
+  "name": "CHC-01 (near Amritsar)",
+  "simulated": true,
+  "lat": 31.5297,
+  "lon": 74.7886,
+  "machines": [
+   {
+    "id": "HS-01-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-01-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-02",
+  "name": "CHC-02 (near Tarn Taran)",
+  "simulated": true,
+  "lat": 31.3354,
+  "lon": 74.8318,
+  "machines": [
+   {
+    "id": "HS-02-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 7
+   },
+   {
+    "id": "HS-02-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 21
+   },
+   {
+    "id": "HS-02-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-03",
+  "name": "CHC-03 (near Gurdaspur)",
+  "simulated": true,
+  "lat": 31.8915,
+  "lon": 75.3161,
+  "machines": [
+   {
+    "id": "HS-03-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-03-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-04",
+  "name": "CHC-04 (near Gurdaspur)",
+  "simulated": true,
+  "lat": 32.1737,
+  "lon": 75.4845,
+  "machines": [
+   {
+    "id": "HS-04-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-04-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-05",
+  "name": "CHC-05 (near Pathankot)",
+  "simulated": true,
+  "lat": 32.3767,
+  "lon": 75.5924,
+  "machines": [
+   {
+    "id": "HS-05-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-05-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 22
+   }
+  ]
+ },
+ {
+  "id": "CHC-06",
+  "name": "CHC-06 (near Pathankot)",
+  "simulated": true,
+  "lat": 32.3466,
+  "lon": 75.6205,
+  "machines": [
+   {
+    "id": "HS-06-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 7
+   },
+   {
+    "id": "HS-06-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-06-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-07",
+  "name": "CHC-07 (near Kapurthala)",
+  "simulated": true,
+  "lat": 31.2847,
+  "lon": 75.521,
+  "machines": [
+   {
+    "id": "HS-07-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-07-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-07-3",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 30
+   }
+  ]
+ },
+ {
+  "id": "CHC-08",
+  "name": "CHC-08 (near Jalandhar)",
+  "simulated": true,
+  "lat": 31.3561,
+  "lon": 75.6869,
+  "machines": [
+   {
+    "id": "HS-08-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-08-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 29
+   }
+  ]
+ },
+ {
+  "id": "CHC-09",
+  "name": "CHC-09 (near Hoshiarpur)",
+  "simulated": true,
+  "lat": 31.6123,
+  "lon": 75.9399,
+  "machines": [
+   {
+    "id": "HS-09-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-09-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-09-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-10",
+  "name": "CHC-10 (near Ludhiana)",
+  "simulated": true,
+  "lat": 31.0291,
+  "lon": 75.7591,
+  "machines": [
+   {
+    "id": "HS-10-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-10-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 10
+   },
+   {
+    "id": "HS-10-3",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 29
+   }
+  ]
+ },
+ {
+  "id": "CHC-11",
+  "name": "CHC-11 (near Moga)",
+  "simulated": true,
+  "lat": 30.9357,
+  "lon": 75.0288,
+  "machines": [
+   {
+    "id": "HS-11-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-11-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 29
+   }
+  ]
+ },
+ {
+  "id": "CHC-12",
+  "name": "CHC-12 (near Moga)",
+  "simulated": true,
+  "lat": 30.8316,
+  "lon": 75.0299,
+  "machines": [
+   {
+    "id": "HS-12-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-12-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-12-3",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 20
+   }
+  ]
+ },
+ {
+  "id": "CHC-13",
+  "name": "CHC-13 (near Ferozepur)",
+  "simulated": true,
+  "lat": 31.0638,
+  "lon": 74.6147,
+  "machines": [
+   {
+    "id": "HS-13-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-13-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-13-3",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 29
+   }
+  ]
+ },
+ {
+  "id": "CHC-14",
+  "name": "CHC-14 (near Fazilka)",
+  "simulated": true,
+  "lat": 30.4201,
+  "lon": 73.9358,
+  "machines": [
+   {
+    "id": "HS-14-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 26
+   },
+   {
+    "id": "HS-14-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-15",
+  "name": "CHC-15 (near Abohar)",
+  "simulated": true,
+  "lat": 30.0614,
+  "lon": 74.1455,
+  "machines": [
+   {
+    "id": "HS-15-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-15-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-16",
+  "name": "CHC-16 (near Abohar)",
+  "simulated": true,
+  "lat": 30.0087,
+  "lon": 74.2146,
+  "machines": [
+   {
+    "id": "HS-16-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-16-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 20
+   },
+   {
+    "id": "HS-16-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-17",
+  "name": "CHC-17 (near Muktsar)",
+  "simulated": true,
+  "lat": 30.3729,
+  "lon": 74.6363,
+  "machines": [
+   {
+    "id": "HS-17-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-17-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 11
+   },
+   {
+    "id": "HS-17-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-18",
+  "name": "CHC-18 (near Muktsar)",
+  "simulated": true,
+  "lat": 30.5979,
+  "lon": 74.6172,
+  "machines": [
+   {
+    "id": "HS-18-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 16
+   },
+   {
+    "id": "HS-18-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-19",
+  "name": "CHC-19 (near Faridkot)",
+  "simulated": true,
+  "lat": 30.5571,
+  "lon": 74.8936,
+  "machines": [
+   {
+    "id": "HS-19-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-19-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 17
+   },
+   {
+    "id": "HS-19-3",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 7
+   }
+  ]
+ },
+ {
+  "id": "CHC-20",
+  "name": "CHC-20 (near Bathinda)",
+  "simulated": true,
+  "lat": 30.3326,
+  "lon": 74.8214,
+  "machines": [
+   {
+    "id": "HS-20-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-20-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 10
+   },
+   {
+    "id": "HS-20-3",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 14
+   }
+  ]
+ },
+ {
+  "id": "CHC-21",
+  "name": "CHC-21 (near Bathinda)",
+  "simulated": true,
+  "lat": 30.3587,
+  "lon": 74.9039,
+  "machines": [
+   {
+    "id": "HS-21-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 20
+   },
+   {
+    "id": "HS-21-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-22",
+  "name": "CHC-22 (near Mansa)",
+  "simulated": true,
+  "lat": 29.9595,
+  "lon": 75.4486,
+  "machines": [
+   {
+    "id": "HS-22-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-22-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-22-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-23",
+  "name": "CHC-23 (near Barnala)",
+  "simulated": true,
+  "lat": 30.3554,
+  "lon": 75.4341,
+  "machines": [
+   {
+    "id": "HS-23-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-23-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-24",
+  "name": "CHC-24 (near Sangrur)",
+  "simulated": true,
+  "lat": 30.1463,
+  "lon": 75.7576,
+  "machines": [
+   {
+    "id": "HS-24-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 17
+   },
+   {
+    "id": "HS-24-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-25",
+  "name": "CHC-25 (near Sangrur)",
+  "simulated": true,
+  "lat": 30.1894,
+  "lon": 75.7243,
+  "machines": [
+   {
+    "id": "HS-25-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-25-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-26",
+  "name": "CHC-26 (near Malerkotla)",
+  "simulated": true,
+  "lat": 30.4319,
+  "lon": 75.8168,
+  "machines": [
+   {
+    "id": "HS-26-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-26-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-26-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-27",
+  "name": "CHC-27 (near Malerkotla)",
+  "simulated": true,
+  "lat": 30.4739,
+  "lon": 76.0186,
+  "machines": [
+   {
+    "id": "HS-27-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-27-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-28",
+  "name": "CHC-28 (near Patiala)",
+  "simulated": true,
+  "lat": 30.4165,
+  "lon": 76.2941,
+  "machines": [
+   {
+    "id": "HS-28-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-28-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-29",
+  "name": "CHC-29 (near Fatehgarh Sahib)",
+  "simulated": true,
+  "lat": 30.4978,
+  "lon": 76.3365,
+  "machines": [
+   {
+    "id": "HS-29-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 14
+   },
+   {
+    "id": "HS-29-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 9
+   }
+  ]
+ },
+ {
+  "id": "CHC-30",
+  "name": "CHC-30 (near Rupnagar)",
+  "simulated": true,
+  "lat": 30.8404,
+  "lon": 76.5056,
+  "machines": [
+   {
+    "id": "HS-30-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-30-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 20
+   },
+   {
+    "id": "HS-30-3",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 15
+   }
+  ]
+ },
+ {
+  "id": "CHC-31",
+  "name": "CHC-31 (near Rupnagar)",
+  "simulated": true,
+  "lat": 30.982,
+  "lon": 76.6392,
+  "machines": [
+   {
+    "id": "HS-31-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-31-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-32",
+  "name": "CHC-32 (near Ambala)",
+  "simulated": true,
+  "lat": 30.4708,
+  "lon": 76.8176,
+  "machines": [
+   {
+    "id": "HS-32-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 24
+   },
+   {
+    "id": "HS-32-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-33",
+  "name": "CHC-33 (near Ambala)",
+  "simulated": true,
+  "lat": 30.2665,
+  "lon": 76.8385,
+  "machines": [
+   {
+    "id": "HS-33-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-33-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-34",
+  "name": "CHC-34 (near Yamunanagar)",
+  "simulated": true,
+  "lat": 30.1366,
+  "lon": 77.3156,
+  "machines": [
+   {
+    "id": "HS-34-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 30
+   },
+   {
+    "id": "HS-34-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-34-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-35",
+  "name": "CHC-35 (near Kurukshetra)",
+  "simulated": true,
+  "lat": 30.084,
+  "lon": 76.7324,
+  "machines": [
+   {
+    "id": "HS-35-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-35-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-35-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-36",
+  "name": "CHC-36 (near Karnal)",
+  "simulated": true,
+  "lat": 29.7863,
+  "lon": 77.1066,
+  "machines": [
+   {
+    "id": "HS-36-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 14
+   },
+   {
+    "id": "HS-36-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-36-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-37",
+  "name": "CHC-37 (near Kaithal)",
+  "simulated": true,
+  "lat": 29.8521,
+  "lon": 76.376,
+  "machines": [
+   {
+    "id": "HS-37-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 14
+   },
+   {
+    "id": "HS-37-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-37-3",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 14
+   }
+  ]
+ },
+ {
+  "id": "CHC-38",
+  "name": "CHC-38 (near Jind)",
+  "simulated": true,
+  "lat": 29.3975,
+  "lon": 76.2348,
+  "machines": [
+   {
+    "id": "HS-38-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 22
+   },
+   {
+    "id": "HS-38-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-39",
+  "name": "CHC-39 (near Narwana)",
+  "simulated": true,
+  "lat": 29.6099,
+  "lon": 76.1555,
+  "machines": [
+   {
+    "id": "HS-39-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-39-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 25
+   }
+  ]
+ },
+ {
+  "id": "CHC-40",
+  "name": "CHC-40 (near Panipat)",
+  "simulated": true,
+  "lat": 29.5216,
+  "lon": 77.0861,
+  "machines": [
+   {
+    "id": "HS-40-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-40-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-40-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-41",
+  "name": "CHC-41 (near Sonipat)",
+  "simulated": true,
+  "lat": 29.0129,
+  "lon": 76.9354,
+  "machines": [
+   {
+    "id": "HS-41-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-41-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-41-3",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 10
+   }
+  ]
+ },
+ {
+  "id": "CHC-42",
+  "name": "CHC-42 (near Fatehabad)",
+  "simulated": true,
+  "lat": 29.5358,
+  "lon": 75.4201,
+  "machines": [
+   {
+    "id": "HS-42-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 19
+   },
+   {
+    "id": "HS-42-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 26
+   }
+  ]
+ },
+ {
+  "id": "CHC-43",
+  "name": "CHC-43 (near Fatehabad)",
+  "simulated": true,
+  "lat": 29.6311,
+  "lon": 75.5505,
+  "machines": [
+   {
+    "id": "HS-43-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 10
+   },
+   {
+    "id": "HS-43-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-43-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-44",
+  "name": "CHC-44 (near Sirsa)",
+  "simulated": true,
+  "lat": 29.4986,
+  "lon": 75.026,
+  "machines": [
+   {
+    "id": "HS-44-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-44-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 15
+   }
+  ]
+ },
+ {
+  "id": "CHC-45",
+  "name": "CHC-45 (near Sirsa)",
+  "simulated": true,
+  "lat": 29.4036,
+  "lon": 74.9054,
+  "machines": [
+   {
+    "id": "HS-45-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-45-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-46",
+  "name": "CHC-46 (near Hisar)",
+  "simulated": true,
+  "lat": 29.2332,
+  "lon": 75.5857,
+  "machines": [
+   {
+    "id": "HS-46-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 12
+   },
+   {
+    "id": "HS-46-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-46-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-47",
+  "name": "CHC-47 (near Rohtak)",
+  "simulated": true,
+  "lat": 28.9558,
+  "lon": 76.6023,
+  "machines": [
+   {
+    "id": "HS-47-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 9
+   },
+   {
+    "id": "HS-47-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-47-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-48",
+  "name": "CHC-48 (near Bhiwani)",
+  "simulated": true,
+  "lat": 28.8941,
+  "lon": 76.2132,
+  "machines": [
+   {
+    "id": "HS-48-1",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-48-2",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   },
+   {
+    "id": "HS-48-3",
+    "type": "happy_seeder",
+    "status": "available",
+    "freeInHours": 0
+   }
+  ]
+ },
+ {
+  "id": "CHC-49",
+  "name": "CHC-49 (near Bhiwani)",
+  "simulated": true,
+  "lat": 28.919,
+  "lon": 76.0713,
+  "machines": [
+   {
+    "id": "HS-49-1",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 11
+   },
+   {
+    "id": "HS-49-2",
+    "type": "happy_seeder",
+    "status": "busy",
+    "freeInHours": 22
+   }
+  ]
+ }
+]

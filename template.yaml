@@ -1,0 +1,102 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: BurnStop - stubble-burning intervention loop (detect, prioritise, propose, approve, act, verify, escalate)
+
+Parameters:
+  FirmsKey:
+    Type: String
+    NoEcho: true
+    Description: NASA FIRMS MAP_KEY
+  OfficerPin:
+    Type: String
+    NoEcho: true
+    Description: PIN the dashboard asks for before approving anything
+  OfficerEmail:
+    Type: String
+    Description: Email that receives failure escalations (you must click the confirmation link AWS sends)
+  TelegramToken:
+    Type: String
+    NoEcho: true
+    Default: ''
+  TelegramChatId:
+    Type: String
+    Default: ''
+  WebhookSecret:
+    Type: String
+    NoEcho: true
+    Default: burnstop-webhook-secret
+    Description: Letters, digits, _ and - only
+
+Globals:
+  Function:
+    Runtime: nodejs22.x
+    Architectures: [arm64]
+    MemorySize: 256
+    Timeout: 60
+
+Resources:
+  Table:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PROVISIONED          # 5+5 units is inside the always-free 25 RCU / 25 WCU
+      ProvisionedThroughput: { ReadCapacityUnits: 5, WriteCapacityUnits: 5 }
+      AttributeDefinitions:
+        - { AttributeName: pk, AttributeType: S }
+        - { AttributeName: sk, AttributeType: S }
+      KeySchema:
+        - { AttributeName: pk, KeyType: HASH }
+        - { AttributeName: sk, KeyType: RANGE }
+
+  EscalationTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+        - { Protocol: email, Endpoint: !Ref OfficerEmail }
+
+  App:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.handler
+      CodeUri: src/
+      Environment:
+        Variables:
+          TABLE: !Ref Table
+          TOPIC_ARN: !Ref EscalationTopic
+          FIRMS_KEY: !Ref FirmsKey
+          OFFICER_PIN: !Ref OfficerPin
+          TELEGRAM_BOT_TOKEN: !Ref TelegramToken
+          TELEGRAM_CHAT_ID: !Ref TelegramChatId
+          WEBHOOK_SECRET: !Ref WebhookSecret
+          USE_BEDROCK: '0'
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref Table }
+        - SNSPublishMessagePolicy: { TopicName: !GetAtt EscalationTopic.TopicName }
+        - Statement:
+            - Effect: Allow
+              Action: [polly:SynthesizeSpeech, 'bedrock:InvokeModel']
+              Resource: '*'
+      Events:
+        Home:
+          Type: HttpApi
+          Properties: { Path: /, Method: GET }
+        Api:
+          Type: HttpApi
+          Properties: { Path: '/api/{proxy+}', Method: ANY }
+        IngestEvery3Hours:
+          Type: Schedule
+          Properties:
+            Schedule: rate(3 hours)
+            Input: '{"task":"ingest"}'
+        VerifyDaily:
+          Type: Schedule
+          Properties:
+            Schedule: cron(30 2 * * ? *)   # 08:00 IST
+            Input: '{"task":"verify"}'
+
+Outputs:
+  AppUrl:
+    Description: Open this in a browser (the live dashboard)
+    Value: !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/'
+  WebhookUrl:
+    Description: Telegram webhook target
+    Value: !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/api/telegram'

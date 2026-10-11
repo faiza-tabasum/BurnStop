@@ -1,0 +1,35 @@
+{
+ "period": "2025-10-15 to 2025-11-10",
+ "days": 27,
+ "headlineK": 50,
+ "results": {
+  "25": {
+   "model": {
+    "precision": 0.4518518518518518
+   },
+   "persistence": {
+    "precision": 0.47407407407407404
+   }
+  },
+  "50": {
+   "model": {
+    "precision": 0.42000000000000015
+   },
+   "persistence": {
+    "precision": 0.4207407407407408
+   }
+  },
+  "100": {
+   "model": {
+    "precision": 0.3781481481481482
+   },
+   "persistence": {
+    "precision": 0.35000000000000003
+   }
+  }
+ },
+ "randomPrecision": 0.09836829836829836,
+ "avgCellsBurningPer48h": 281,
+ "note": "Precision = share of the top-K ranked cells that had a satellite detection in the next 48 h, averaged over 27 days. Weights were fixed in advance, not tuned on 2025. Detection is not the same as a farmer burning a field.",
+ "generatedAt": "2026-10-11T08:22:49.353Z"
+}

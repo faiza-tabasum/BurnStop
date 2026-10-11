@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BurnStop</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+<style>
+  :root {
+    --bg: #f5f4ed;
+    --card: #fffefa;
+    --ink: #202d25;
+    --mute: #737d73;
+    --line: #e2e4d8;
+    --hi: #b83b2d;
+    --med: #c87927;
+    --low: #e7d18a;
+    --ok: #397653;
+    --accent: #245741;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font: 14px/1.55 "Segoe UI", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(ellipse at 8% 0%, #e4e9d9 0, transparent 36rem),
+      var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 28px 30px 40px;
+  }
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding: 8px 0 22px;
+    border-bottom: 1px solid #d9dfd1;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+  }
+
+  .tag {
+    color: var(--mute);
+    margin: 9px 0 0;
+    font-size: 14px;
+    letter-spacing: .05px;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    background: #e8edd9;
+    border: 1px solid #dfe3d5;
+    border-radius: 12px;
+  }
+
+  .tabs button {
+    background: transparent;
+    color: #667367;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 9px 15px;
+    transition: background .18s, color .18s;
+  }
+
+  .tabs button:hover { color: var(--accent); }
+
+  .tabs button.on {
+    color: #fffefa;
+    background: var(--accent);
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+
+  .pill {
+    background: #f6e6bc;
+    color: #79501d;
+    border: 1px solid #ead49c;
+    padding: 4px 9px;
+    border-radius: 6px;
+    font-size: 10px;
+    letter-spacing: .7px;
+    margin-left: 8px;
+    vertical-align: middle;
+    font-weight: 800;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 24px 0 22px;
+  }
+
+  .stat {
+    position: relative;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    padding: 20px 20px 18px;
+    box-shadow: 0 3px 10px rgba(32, 45, 37, .025);
+  }
+
+  .stat::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #9aaf8e;
+  }
+
+  .stat:nth-child(1)::before { background: var(--hi); }
+  .stat:nth-child(2)::before { background: #4f9270; }
+  .stat:nth-child(3)::before { background: #c59a48; }
+  .stat:nth-child(4)::before { background: #7e8f78; }
+
+  .stat b {
+    display: block;
+    font-size: clamp(29px, 3vw, 38px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat span {
+    display: block;
+    color: var(--mute);
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 8px;
+    letter-spacing: .15px;
+  }
+
+  .bar {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+
+  button {
+    font: inherit;
+    font-weight: 650;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #fffefa;
+    padding: 9px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .16s, border-color .16s,
+                box-shadow .16s, transform .16s;
+  }
+
+  button:hover:not(:disabled) {
+    background: #194631;
+    border-color: #194631;
+    box-shadow: 0 3px 9px rgba(36, 87, 65, .12);
+  }
+
+  button:active:not(:disabled) { transform: translateY(1px); }
+
+  button.ghost {
+    background: var(--card);
+    color: var(--accent);
+    border-color: #d5dfd2;
+  }
+
+  button.ghost:hover:not(:disabled) {
+    background: #edf2e8;
+    border-color: #a8bba8;
+    box-shadow: none;
+  }
+
+  button.big {
+    padding: 11px 18px;
+    font-size: 14px;
+    font-weight: 750;
+  }
+
+  button:disabled {
+    opacity: .42;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  input[type=date] {
+    font: inherit;
+    color: var(--ink);
+    background: var(--card);
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 420px);
+    gap: 20px;
+    align-items: start;
+  }
+
+  #map {
+    height: 560px;
+    border-radius: 14px;
+    border: 1px solid #d8dfd1;
+    box-shadow: 0 5px 18px rgba(32, 45, 37, .06);
+    z-index: 0;
+  }
+
+  .key {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 9px 3px;
+  }
+
+  .key span {
+    margin-right: 4px;
+    font-size: 11px;
+    color: var(--mute);
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 17px;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 10px rgba(32, 45, 37, .025);
+    overflow-wrap: anywhere;
+  }
+
+  .card.hero {
+    background: linear-gradient(145deg, #fffefa 65%, #edf2e5);
+    border: 1px solid #8ba990;
+    border-top: 3px solid var(--accent);
+    padding: 18px;
+    box-shadow: 0 5px 18px rgba(36, 87, 65, .075);
+  }
+
+  .card h2 {
+    margin: 0 0 11px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    font-weight: 850;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 10px;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+    font-weight: 800;
+    vertical-align: 1px;
+  }
+
+  .High { background: #b83b2d; }
+  .Medium { background: #b86a1f; }
+  .Low { background: #f0dfa8; color: #58451b; }
+
+  .mute {
+    color: var(--mute);
+    font-size: 12px;
+  }
+
+  ul {
+    margin: 10px 0;
+    padding-left: 19px;
+  }
+
+  li {
+    margin: 5px 0;
+    padding-left: 2px;
+  }
+
+  .row {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .steps {
+    display: flex;
+    gap: 4px;
+    margin: 13px 0 4px;
+  }
+
+  .steps i {
+    flex: 1;
+    min-width: 0;
+    font-style: normal;
+    font-size: 10px;
+    text-align: center;
+    padding: 5px 2px;
+    border-radius: 5px;
+    background: #eff0e9;
+    color: #798076;
+    overflow-wrap: anywhere;
+  }
+
+  .steps i.on {
+    background: #e0eddf;
+    color: #2d6947;
+    font-weight: 750;
+  }
+
+  .steps i.bad {
+    background: #f8dfd9;
+    color: #a52e25;
+    font-weight: 750;
+  }
+
+  .alt {
+    font-size: 11px;
+    color: var(--mute);
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: #f1f2e9;
+    border-radius: 6px;
+  }
+
+  .small { padding: 15px 16px; }
+
+  .empty {
+    text-align: center;
+    padding: 34px 18px;
+    color: var(--mute);
+    line-height: 1.8;
+  }
+
+  details {
+    padding: 8px 10px;
+    border-radius: 7px;
+    background: #f5f5ef;
+  }
+
+  summary { cursor: pointer; }
+
+  #msg {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #203a2c;
+    color: #fffefa;
+    padding: 12px 18px;
+    border: 1px solid #496b51;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .16);
+    display: none;
+    z-index: 9999;
+    max-width: 90vw;
+  }
+
+  .how ol { padding-left: 21px; }
+  .how li { margin: 13px 0; padding-left: 3px; }
+
+  .hide { display: none; }
+
+  :focus-visible {
+    outline: 3px solid #9abf79;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 1000px) {
+    .wrap { padding: 20px; }
+    .grid { grid-template-columns: minmax(0, 1fr) minmax(300px, 370px); gap: 12px; }
+    .stat { padding: 16px; }
+  }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 15px; }
+    .top { align-items: flex-start; }
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    #map { height: 420px; }
+    .tabs { width: 100%; }
+    .tabs button { flex: 1; }
+    .card.hero { padding: 15px; }
+  }
+
+  @media (max-width: 400px) {
+    .wrap { padding: 10px; }
+    .stat { padding: 13px 12px; }
+    .steps i { font-size: 9px; }
+    #map { height: 350px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1>🔥 BurnStop <span class="pill hide" id="demoPill"></span></h1>
+      <p class="tag">Getting the right machine to the right area in time, so stubble doesn't get burned.</p>
+    </div>
+    <div class="tabs">
+      <button class="on" id="tabMain" onclick="tab('main')">Today</button>
+      <button id="tabHow" onclick="tab('how')">How it works</button>
+    </div>
+  </div>
+
+  <div id="main">
+    <div class="stats">
+      <div class="stat"><b id="sRisk">0</b><span>areas at risk</span></div>
+      <div class="stat"><b id="sFree">0</b><span>machines free</span></div>
+      <div class="stat"><b id="sApproved">0</b><span>machines sent</span></div>
+      <div class="stat"><b id="sFail">0</b><span>fires after a visit</span></div>
+    </div>
+
+    <div class="bar">
+      <button onclick="demoStart()">Start demo</button>
+      <button class="ghost" id="nextBtn" onclick="demoNext()">Next day ▶</button>
+      <button class="ghost" id="liveBtn" onclick="demoStop()">Live</button>
+      <button class="ghost" id="refreshBtn" onclick="refreshLive()">Refresh</button>
+      <input type="date" id="demoDate" value="2025-11-02" min="2025-10-10" max="2025-11-25" style="display:none">
+    </div>
+
+    <div class="grid">
+      <div>
+        <div id="map"></div>
+        <div class="key" style="margin-top:6px"><span><b style="color:#c0392b">■</b> High</span><span><b style="color:#e67e22">■</b> Medium</span><span><b style="color:#e9c46a">■</b> Low</span><span><b style="color:#1d4ed8">●</b> Machine centre</span></div>
+      </div>
+      <div id="plans"></div>
+    </div>
+  </div>
+
+  <div id="how" class="hide how">
+    <div class="card">
+      <h2>How it works</h2>
+      <ol>
+        <li><b>See.</b> We read NASA satellite fire detections for Punjab and Haryana and score every ~5 km area for burn risk.</li>
+        <li><b>Match.</b> For the riskiest areas we pick the Happy Seeder that can get there soonest.</li>
+        <li><b>Approve.</b> The officer approves with one tap. The farmer and the machine operator are messaged.</li>
+        <li><b>Confirm.</b> The operator accepts, or says they can't, and the next machine is assigned. They tap Done after the visit.</li>
+        <li><b>Check.</b> The next day we look for fires in that area. If one is detected, the officer is alerted by email and Telegram.</li>
+      </ol>
+    </div>
+    <div class="card"><h2>The risk score</h2><div id="score" class="mute" style="font-size:13px"></div></div>
+    <div class="card"><h2>Does it rank well?</h2><div id="evBody" class="mute" style="font-size:13px"></div></div>
+    <div class="card"><h2>Sample data</h2><div class="mute" style="font-size:13px">Fire detections are real (NASA FIRMS). Machines, centres and farmers are sample data.</div></div>
+  </div>
+</div>
+<div id="msg"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+let PIN = sessionStorage.getItem('pin') || '';
+let state = null, fitted = false, busy = false;
+const colors = { High:'#c0392b', Medium:'#e67e22', Low:'#e9c46a' };
+const cellRects = {};
+
+const map = L.map('map').setView([30.7, 75.8], 7);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { maxZoom: 12, attribution: 'Tiles © Esri' }).addTo(map);
+const layers = L.layerGroup().addTo(map);
+
+function toast(t, ms = 3500) { const m = document.getElementById('msg'); m.textContent = t; m.style.display = 'block'; clearTimeout(toast.t); toast.t = setTimeout(() => m.style.display = 'none', ms); }
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $ = (id) => document.getElementById(id);
+
+function tab(t) {
+  $('main').classList.toggle('hide', t !== 'main'); $('how').classList.toggle('hide', t !== 'how');
+  $('tabMain').classList.toggle('on', t === 'main'); $('tabHow').classList.toggle('on', t === 'how');
+  if (t === 'main') setTimeout(() => map.invalidateSize(), 50);
+}
+
+async function api(path, method = 'GET', body) {
+  const headers = { 'content-type': 'application/json' };
+  if (method !== 'GET') {
+    if (!PIN) { PIN = prompt('Officer PIN') || ''; sessionStorage.setItem('pin', PIN); }
+    headers['x-pin'] = PIN;
+  }
+  const r = await fetch(path, { method, headers, body: body ? JSON.stringify(body) : undefined });
+  const j = await r.json().catch(() => ({}));
+  if (r.status === 401) { PIN = ''; sessionStorage.removeItem('pin'); throw new Error('Wrong PIN'); }
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+
+async function act(path, okMsg, body) {
+  busy = true;
+  try { const j = await api(path, 'POST', body); if (okMsg) toast(okMsg); await load(); return j; }
+  catch (e) { toast('⚠ ' + e.message, 6000); }
+  finally { busy = false; }
+}
+
+async function demoStart() { const d = $('demoDate').value; if (await act('/api/replay/start', '', { date: d })) await act('/api/plans/refresh', 'Demo started'); }
+async function demoNext() { if (await act('/api/replay/advance', 'Next day: results checked')) await act('/api/plans/refresh', ''); }
+async function demoStop() { await act('/api/replay/stop', 'Back to live'); }
+async function refreshLive() { if (await act('/api/ingest', '')) await act('/api/plans/refresh', 'Updated'); }
+const approve = (id) => act(`/api/plans/${id}/approve`, 'Approved. Farmer and operator messaged.');
+const accept = (id) => act(`/api/plans/${id}/accept`, 'Operator accepted');
+const decline = (id) => act(`/api/plans/${id}/decline`, 'Operator declined. Next machine assigned.');
+const done = (id) => act(`/api/plans/${id}/done`, 'Service marked done');
+async function voice(id) {
+  try {
+    const j = await api(`/api/plans/${id}/audio`);
+    if (!j.audio) return toast('Voice unavailable: ' + (j.error || 'unknown'), 6000);
+    new Audio('data:audio/mpeg;base64,' + j.audio).play();
+  } catch (e) { toast('⚠ ' + e.message); }
+}
+function focusCell(id) { const r = cellRects[id]; if (!r) return; map.fitBounds(r.getBounds().pad(6)); r.openPopup(); }
+
+function tracker(p) {
+  const s = p.status;
+  const rank = { proposed:0, approved:1, accepted:2, done:3, verified:4, unconfirmed:4, failed:4 }[s] ?? 0;
+  const names = ['Proposed', 'Approved', 'Accepted', 'Done', s === 'failed' ? 'Fire seen' : 'Checked'];
+  return `<div class="steps">${names.map((n, i) => `<i class="${i <= rank ? (i === 4 && s === 'failed' ? 'bad' : 'on') : ''}">${n}</i>`).join('')}</div>`;
+}
+
+function machineLine(p) {
+  const a = p.assignment;
+  if (!a) return '<div><b>No machine free right now.</b></div>';
+  const alt = (p.alternatives || [])[0];
+  return `<div style="margin-top:6px"><b>${esc(a.machineId)}</b> from ${esc(a.centreName)}<br><span class="mute">${a.roadKm} km by road · arrives in about ${Math.max(1, Math.round(a.etaHours))} h ${p.meetsTarget ? '' : '(slower than the 48 h target)'}</span></div>` +
+    (alt && p.status === 'proposed' ? `<div class="alt">Next best: ${esc(alt.machineId)} from ${esc(alt.centreName)}, ${Math.max(1, Math.round(alt.etaHours))} h</div>` : '');
+}
+
+function actions(p, hero) {
+  const a = p.assignment; let h = '';
+  if (p.status === 'proposed') h += `<button class="${hero ? 'big' : ''}" ${a ? '' : 'disabled'} onclick="event.stopPropagation();approve('${p.id}')">Review &amp; approve</button>`;
+  if (p.status === 'approved') h += `<button class="ghost" onclick="event.stopPropagation();accept('${p.id}')">Operator accepts</button><button class="ghost" onclick="event.stopPropagation();decline('${p.id}')">Operator can't</button>`;
+  if (p.status === 'accepted') h += `<button class="ghost" onclick="event.stopPropagation();done('${p.id}')">Mark service done</button>`;
+  if (a && p.status !== 'proposed') h += `<button class="ghost" onclick="event.stopPropagation();voice('${p.id}')">🔊 Farmer voice</button>`;
+  return h ? `<div class="row">${h}</div>` : '';
+}
+
+function renderPlan(p, hero) {
+  let h = `<div class="card ${hero ? 'hero' : 'small'}" style="cursor:pointer" onclick="focusCell('${p.cell}')">`;
+  if (hero) h += '<h2>Next action</h2>';
+  h += `<div><span class="badge ${p.tier}">${p.tier}</span> <b>${esc(p.town)} area</b></div>`;
+  if (hero || p.status !== 'proposed') h += `<ul>${p.reasons.slice(0, 3).map((r) => `<li>${esc(r)}</li>`).join('')}</ul>`;
+  h += machineLine(p) + tracker(p) + actions(p, hero);
+  if (p.texts) h += `<details style="margin-top:6px"><summary class="mute">Message sent to farmer</summary><div class="mute" style="margin-top:4px">${esc(p.texts.farmer.pa)}<br><br>${esc(p.texts.farmer.hi)}</div></details>`;
+  if (p.verification) h += `<div class="mute" style="margin-top:6px"><b>${p.status === 'failed' ? '🔴 Fire detected after visit' : p.status === 'verified' ? '✅ No fire detected since' : 'No fire detected, visit not confirmed'}.</b> ${esc(p.verification.note)}</div>`;
+  return h + '</div>';
+}
+
+function renderPlans(plans) {
+  if (!plans.length) return '<div class="card empty">Nothing needs action right now.<br>Press <b>Start demo</b> to see a day of the season.</div>';
+  const open = plans.filter((p) => p.status === 'proposed' && p.assignment);
+  const hero = open[0] || null;
+  const rest = plans.filter((p) => p !== hero);
+  const group = (title, list) => list.length ? `<div class="mute" style="margin:10px 2px 6px">${title}</div>` + list.map((p) => renderPlan(p, false)).join('') : '';
+  const inFlight = rest.filter((p) => ['approved', 'accepted', 'done'].includes(p.status));
+  const finished = rest.filter((p) => ['verified', 'failed', 'unconfirmed'].includes(p.status));
+  const waiting = rest.filter((p) => p.status === 'proposed');
+  return (hero ? renderPlan(hero, true) : '') + group('Waiting for approval', waiting) + group('In progress', inFlight) + group('Checked', finished);
+}
+
+async function load() {
+  state = await api('/api/state');
+  const risk = await api('/api/risk');
+  const { plans } = await api('/api/plans');
+  const demo = state.mode === 'replay';
+
+  const ist = new Date(state.asOf + 'T00:00:00Z').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+  $('demoPill').textContent = 'DEMO · ' + ist; $('demoPill').classList.toggle('hide', !demo);
+  $('nextBtn').disabled = !demo; $('liveBtn').style.display = demo ? '' : 'none'; $('refreshBtn').style.display = demo ? 'none' : '';
+
+  const n = (s) => state.counts[s] || 0;
+  $('sRisk').textContent = risk.cells.filter((c) => c.tier !== 'Low').length;
+  $('sFree').textContent = risk.machinesAvailable;
+  $('sApproved').textContent = n('approved') + n('accepted') + n('done') + n('verified') + n('failed') + n('unconfirmed');
+  $('sFail').textContent = n('failed');
+
+  $('score').innerHTML = `Each area gets a score from four things: recent fires in and around it (${Math.round(state.weights.recent * 100)}%), fires in the same week last year (${Math.round(state.weights.hist * 100)}%), how close the sowing deadline is (${Math.round(state.weights.urgency * 100)}%), and whether a machine is nearby (${Math.round(state.weights.gap * 100)}%). These weights are our judgement, not a trained model.`;
+  const b = state.backtest;
+  if (b) {
+    const k = b.headlineK, m = b.results[k];
+    $('evBody').innerHTML = `We replayed ${esc(b.period)} using only the data available each day. Of the ${k} areas ranked highest each day, <b>${(m.model.precision * 100).toFixed(0)}%</b> had a fire in the next 2 days. Simply ranking by fires so far gives <b>${(m.persistence.precision * 100).toFixed(0)}%</b>, and picking areas at random gives <b>${(b.randomPrecision * 100).toFixed(0)}%</b>. So the ranking is about as good as the simple method; the value is in acting on it and checking the result.`;
+  } else $('evBody').textContent = 'Not available.';
+
+  layers.clearLayers(); for (const k in cellRects) delete cellRects[k];
+  for (const c of risk.cells) {
+    const bb = c.bounds;
+    const r = L.rectangle([[bb.s, bb.w], [bb.n, bb.e]], { color: colors[c.tier], weight: 1, fillOpacity: .55 }).addTo(layers);
+    r.bindPopup(`<b>${c.tier}</b> · ${esc(c.town)} area<ul>${c.reasons.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`);
+    cellRects[c.cell] = r;
+  }
+  for (const c of risk.centres) L.circleMarker([c.lat, c.lon], { radius: 4, color: '#1d4ed8', fillOpacity: 1 }).addTo(layers)
+    .bindTooltip(`${c.name}: ${c.available} of ${c.total} machines free`);
+  if (!fitted && risk.cells.length) { map.fitBounds(L.latLngBounds(risk.cells.map((c) => [c.lat, c.lon])).pad(0.2)); fitted = true; }
+
+  $('plans').innerHTML = renderPlans(plans);
+}
+
+load().catch((e) => toast('⚠ ' + e.message, 8000));
+setInterval(() => { if (!busy && !document.hidden) load().catch(() => {}); }, 30000);
+</script>
+</body>
+</html>
